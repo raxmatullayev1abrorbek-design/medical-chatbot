@@ -13,7 +13,7 @@ app.use(cors());
 app.use(express.json());
 
 // Static fayllarni xizmat qilish (HTML, CSS, JS)
-app.use(express.static(__dirname));
+app.use(express.static(path.join(__dirname)));
 
 // API kalit – .env dan yoki berilgan defaultdan o'qing
 const API_KEY = process.env.GEMINI_API_KEY || "AIzaSyDcvJ6dr4Ao2ruxifqZ-BWs-qnxamRscuk";
@@ -146,4 +146,5 @@ app.listen(PORT, async () => {
   } catch (error) {
     console.log("⚠️ Brauzer avtomatik ochilmadi. Qo'lda oching: http://localhost:${PORT}\n");
   }
+
 });
