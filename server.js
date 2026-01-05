@@ -16,7 +16,7 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname)));
 
 // API kalit – .env dan yoki berilgan defaultdan o'qing
-const API_KEY = process.env.GEMINI_API_KEY || "AIzaSyDcvJ6dr4Ao2ruxifqZ-BWs-qnxamRscuk";
+const API_KEY = process.env.GEMINI_API_KEY || "AIzaSyAw8OBBykODZ3HogZZKPAhFX9AKCtBlVO4";
 
 if (!API_KEY || !API_KEY.startsWith("AIza")) {
   console.warn("⚠️  GEMINI_API_KEY topilmadi yoki noto'g'ri. Chat ishlamaydi.");
@@ -148,5 +148,6 @@ app.listen(PORT, async () => {
   }
 
 });
+
 
 
