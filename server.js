@@ -86,7 +86,7 @@ app.post("/chat", async (req, res) => {
 
     // Gemini 2.5 Flash modelini ishlatish
     const model = genAI.getGenerativeModel({
-      model: "gemini-1.5-flash",
+      model: "gemini-2.5-flash",
       systemInstruction: SYSTEM_INSTRUCTION
     });
 
@@ -118,7 +118,7 @@ app.post("/chat", async (req, res) => {
 app.get("/api/status", (req, res) => {
   res.json({
     status: "✅ Server ishlayapti",
-    model: "Gemini 1.5 Flash",
+    model: "Gemini 2.5 Flash",
     endpoints: {
       home: "GET /",
       chat: "POST /chat",
@@ -136,7 +136,7 @@ app.listen(PORT, async () => {
   console.log(`📍 URL: http://localhost:${PORT}`);
   console.log(`💬 Chat sahifasi: http://localhost:${PORT}/`);
   console.log(`🔍 API status: http://localhost:${PORT}/api/status`);
-  console.log(`🤖 Model: Gemini 1.5 Flash`);
+  console.log(`🤖 Model: Gemini 2.5 Flash`);
   console.log("=".repeat(50) + "\n");
 
   // Brauzerda avtomatik ochish
@@ -148,3 +148,4 @@ app.listen(PORT, async () => {
   }
 
 });
+
