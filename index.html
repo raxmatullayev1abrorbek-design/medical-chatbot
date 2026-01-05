@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MedAI - Tibbiy Maslahatchi</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    :root {
+      --primary: #2563EB;
+      --primary-dark: #1E40AF;
+      --secondary: #10B981;
+      --accent: #8B5CF6;
+      --error: #EF4444;
+      --warning: #F59E0B;
+      --bg: #F8FAFC;
+      --white: #FFF;
+      --text: #1E293B;
+      --text-light: #64748B;
+      --border: #E2E8F0;
+      --shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* Header */
+    .header {
+      background: var(--white);
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .logo-icon {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+    }
+
+    /* Hero Video - Realistik 3D */
+    .hero-video {
+      position: relative;
+      height: 500px;
+      background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .particles {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+    }
+
+    .particle {
+      position: absolute;
+      background: rgba(37, 99, 235, 0.3);
+      border-radius: 50%;
+      animation: float-particle 20s infinite;
+    }
+
+    @keyframes float-particle {
+      0%, 100% {
+        transform: translate(0, 0) scale(1);
+        opacity: 0.3;
+      }
+      33% {
+        transform: translate(100px, -100px) scale(1.5);
+        opacity: 0.6;
+      }
+      66% {
+        transform: translate(-100px, 100px) scale(0.8);
+        opacity: 0.4;
+      }
+    }
+
+    .hero-video-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      color: white;
+    }
+
+    .medical-icons-3d {
+      font-size: 5rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      gap: 2rem;
+      justify-content: center;
+    }
+
+    .icon-3d {
+      animation: float-3d 3s ease-in-out infinite;
+      filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3));
+    }
+
+    .icon-3d:nth-child(2) {
+      animation-delay: 0.3s;
+    }
+
+    .icon-3d:nth-child(3) {
+      animation-delay: 0.6s;
+    }
+
+    @keyframes float-3d {
+      0%, 100% {
+        transform: translateY(0px) rotateY(0deg);
+      }
+      50% {
+        transform: translateY(-30px) rotateY(180deg);
+      }
+    }
+
+    .hero-video-content h1 {
+      font-size: 4rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #fff, #94A3B8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Main Content */
+    .hero {
+      max-width: 1200px;
+      margin: 3rem auto;
+      padding: 0 2rem;
+      text-align: center;
+    }
+
+    .hero-title {
+      font-size: 3rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 1rem;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin: 2rem 0;
+    }
+
+    .btn {
+      padding: 1.2rem 2.5rem;
+      border-radius: 14px;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      font-size: 1.1rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.3);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s, height 0.6s;
+    }
+
+    .btn:hover::before {
+      width: 300px;
+      height: 300px;
+    }
+
+    .btn:hover {
+      transform: translateY(-5px) scale(1.05);
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+      box-shadow: 0 10px 30px rgba(37, 99, 235, 0.3);
+    }
+
+    .btn-primary:hover {
+      box-shadow: 0 15px 40px rgba(37, 99, 235, 0.5);
+    }
+
+    .btn-quiz {
+      background: linear-gradient(135deg, var(--accent), #7C3AED);
+      color: white;
+      box-shadow: 0 10px 30px rgba(139, 92, 246, 0.3);
+    }
+
+    .btn-quiz:hover {
+      box-shadow: 0 15px 40px rgba(139, 92, 246, 0.5);
+    }
+
+    .btn-error {
+      padding: 0.9rem 1.5rem;
+      background: linear-gradient(135deg, var(--error), #DC2626);
+      color: white;
+      border: none;
+      border-radius: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 0.95rem;
+      box-shadow: 0 6px 20px rgba(239, 68, 68, 0.3);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .btn-error:hover {
+      transform: translateY(-4px) scale(1.05);
+      box-shadow: 0 12px 30px rgba(239, 68, 68, 0.5);
+      cursor: pointer;
+    }
+
+    /* Stats */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      max-width: 1200px;
+      margin: 3rem auto;
+      padding: 0 2rem;
+    }
+
+    .stat-card {
+      background: white;
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      transition: transform 0.3s;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-5px);
+    }
+
+    /* Modal */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(4px);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .chat-modal {
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+      width: 100%;
+      max-width: 900px;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .chat-header {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+      padding: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-radius: 20px 20px 0 0;
+    }
+
+    .close-btn {
+      background: rgba(255,255,255,0.2);
+      border: none;
+      color: white;
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+
+    .close-btn:hover {
+      background: rgba(255,255,255,0.3);
+      cursor: pointer;
+    }
+
+    #messages {
+      flex: 1;
+      padding: 1.5rem;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      max-height: 400px;
+    }
+
+    .message {
+      max-width: 80%;
+      padding: 1rem 1.25rem;
+      border-radius: 16px;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .message.bot {
+      background: #F1F5F9;
+      color: var(--text);
+      align-self: flex-start;
+      border-bottom-left-radius: 4px;
+    }
+
+    .message.user {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+      align-self: flex-end;
+      border-bottom-right-radius: 4px;
+    }
+
+    /* TEZ SAVOLLAR - CHAT ICHIDA */
+    .quick-questions {
+      padding: 1rem 1.5rem;
+      background: #F9FAFB;
+      border-top: 1px solid var(--border);
+    }
+
+    .quick-questions-title {
+      font-size: 0.875rem;
+      color: var(--text-light);
+      margin-bottom: 0.75rem;
+      font-weight: 600;
+    }
+
+    .quick-btns {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .quick-btn {
+      padding: 0.625rem 1rem;
+      background: white;
+      border: 2px solid var(--border);
+      border-radius: 20px;
+      font-size: 0.8125rem;
+      color: var(--text-light);
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      font-weight: 500;
+    }
+
+    .quick-btn:hover {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+      cursor: pointer;
+    }
+
+    .input-area {
+      padding: 1.5rem;
+      background: white;
+      border-top: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .input-row {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .input-area input {
+      flex: 1;
+      padding: 0.875rem 1.25rem;
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      font-size: 0.95rem;
+      outline: none;
+    }
+
+    .input-area input:focus {
+      border-color: var(--primary);
+    }
+
+    .send-btn {
+      padding: 1rem 2rem;
+      background: linear-gradient(135deg, var(--secondary), #059669);
+      color: white;
+      border: none;
+      border-radius: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+      box-shadow: 0 6px 20px rgba(16, 185, 129, 0.3);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .send-btn:hover {
+      transform: translateY(-4px) scale(1.05);
+      box-shadow: 0 12px 30px rgba(16, 185, 129, 0.5);
+      cursor: pointer;
+    }
+
+    /* Quiz Styles */
+    .quiz-container {
+      padding: 2rem;
+      max-height: 70vh;
+      overflow-y: auto;
+    }
+
+    .quiz-timer {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--error);
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .quiz-progress {
+      background: var(--border);
+      height: 10px;
+      border-radius: 5px;
+      margin-bottom: 1.5rem;
+      overflow: hidden;
+    }
+
+    .quiz-progress-bar {
+      height: 100%;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      transition: width 0.3s;
+    }
+
+    .quiz-question h3 {
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .quiz-option {
+      padding: 1.2rem;
+      background: #F8FAFC;
+      border: 3px solid var(--border);
+      border-radius: 14px;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      text-align: left;
+      font-weight: 500;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+
+    .quiz-option:hover {
+      background: #E0F2FE;
+      border-color: var(--primary);
+      transform: translateX(8px) scale(1.02);
+      box-shadow: 0 8px 20px rgba(37, 99, 235, 0.2);
+      cursor: pointer;
+    }
+
+    .quiz-option.selected {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+      transform: scale(1.05);
+      box-shadow: 0 10px 25px rgba(37, 99, 235, 0.3);
+    }
+
+    .payment-info {
+      background: #FEF3C7;
+      padding: 1.5rem;
+      border-radius: 12px;
+      margin-bottom: 1.5rem;
+      text-align: center;
+      border-left: 4px solid var(--warning);
+    }
+
+    .payment-info h3 {
+      color: var(--warning);
+      margin-bottom: 0.5rem;
+      font-size: 1.25rem;
+    }
+
+    /* Social Links - Kichik */
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin: 2rem 0;
+    }
+
+    .social-btn {
+      width: 50px;
+      height: 50px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      color: white;
+      text-decoration: none;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+    }
+
+    .social-btn.telegram {
+      background: #0088cc;
+    }
+
+    .social-btn.instagram {
+      background: linear-gradient(135deg, #833AB4, #FD1D1D);
+    }
+
+    .social-btn.whatsapp {
+      background: #25D366;
+    }
+
+    .social-btn:hover {
+      transform: translateY(-8px) scale(1.15);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+      cursor: pointer;
+    }
+
+    /* Emergency Button - REALISTIK ANIMATSIYA */
+    .emergency-call {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 999;
+    }
+
+    .emergency-btn {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--error), #DC2626);
+      color: white;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 10px 40px rgba(239, 68, 68, 0.6);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      font-weight: 700;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
+    }
+
+    .emergency-btn::before {
+      content: '';
+      position: absolute;
+      inset: -8px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(239, 68, 68, 0.4), transparent);
+      animation: pulse-ring 2s infinite;
+    }
+
+    @keyframes pulse-ring {
+      0%, 100% {
+        transform: scale(1);
+        opacity: 0.6;
+      }
+      50% {
+        transform: scale(1.3);
+        opacity: 0;
+      }
+    }
+
+    .emergency-btn:hover {
+      transform: scale(1.25) rotate(15deg);
+      box-shadow: 0 15px 50px rgba(239, 68, 68, 0.8);
+      cursor: pointer;
+    }
+
+    .emergency-btn:active {
+      transform: scale(1.1) rotate(0deg);
+    }
+
+    /* Confirmation Modal */
+    .confirm-modal {
+      background: white;
+      padding: 2.5rem;
+      border-radius: 20px;
+      max-width: 400px;
+      text-align: center;
+      animation: slideUp 0.3s;
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .confirm-modal h3 {
+      font-size: 1.75rem;
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+
+    .confirm-modal p {
+      color: var(--text-light);
+      margin-bottom: 1.5rem;
+      font-size: 1.1rem;
+    }
+
+    .confirm-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+    }
+
+    .btn-confirm {
+      padding: 1rem 3rem;
+      border: none;
+      border-radius: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      font-size: 1.1rem;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    }
+
+    .btn-yes {
+      background: var(--secondary);
+      color: white;
+    }
+
+    .btn-yes:hover {
+      transform: translateY(-4px) scale(1.08);
+      box-shadow: 0 12px 30px rgba(16, 185, 129, 0.4);
+      cursor: pointer;
+    }
+
+    .btn-no {
+      background: var(--border);
+      color: var(--text);
+    }
+
+    .btn-no:hover {
+      background: #CBD5E1;
+      transform: translateY(-4px) scale(1.08);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      .hero-video-content h1 {
+        font-size: 2.5rem;
+      }
+      .medical-icons-3d {
+        font-size: 3rem;
+        gap: 1rem;
+      }
+      .input-row {
+        flex-direction: column;
+      }
+      .send-btn {
+        width: 100%;
+      }
+      .emergency-call {
+        bottom: 1.5rem;
+        right: 1.5rem;
+      }
+      .emergency-btn {
+        width: 65px;
+        height: 65px;
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="header-content">
+      <div class="logo">
+        <div class="logo-icon">⚕️</div>
+        <span>MedAI</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Video -->
+  <section class="hero-video">
+    <div class="particles" id="particles"></div>
+    <div class="hero-video-content">
+      <div class="medical-icons-3d">
+        <div class="icon-3d">🤒</div>
+        <div class="icon-3d">🚑</div>
+        <div class="icon-3d">🏥</div>
+        <div class="icon-3d">👨‍⚕</div>
+      </div>
+      <h1>MedAI</h1>
+      <p style="font-size: 2.5rem;">Sizning 24/7 Tibbiy Yordamchingiz</p>
+    </div>
+  </section>
+
+  <!-- Hero -->
+  <section class="hero">
+    <h1 class="hero-title">MedAI - Sizning Tibbiy Yordamchingiz</h1>
+    <p style="color: var(--text-light); font-size: 1.30rem; margin-bottom: 2rem;">
+      Professional AI tibbiy maslahatchi. Savol bering, darhol javob oling.
+    </p>
+    <div class="btn-group">
+      <button class="btn btn-primary" onclick="openChat()">📬Chatni Boshlash</button>
+      <button class="btn btn-quiz" onclick="openQuiz()"> 💬 Mini Viktorina</button>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="stats">
+    <div class="stat-card">
+      <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">⌚️</div>
+      <div style="font-size: 1.5rem; font-weight: 700; color: var(--primary);">24/7</div>
+      <p style="color: var(--text-light);">Doim onlayn yordam</p>
+    </div>
+    <div class="stat-card">
+      <div style="font-size: 2.5rem; margin-bottom: 0.5rem;"></div>
+      <div style="font-size: 1.5rem; font-weight: 700; color: var(--primary);"> O'zbekcha</div>
+      <p style="color: var(--text-light);">To'liq o'zbek tilida</p>
+    </div>
+    <div class="stat-card">
+      <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🤖</div>
+      <div style="font-size: 1.5rem; font-weight: 700; color: var(--primary);">AI</div>
+      <p style="color: var(--text-light);">Sun'iy intellekt</p>
+    </div>
+  </section>
+
+  <!-- Social Links -->
+  <section style="text-align: center; padding: 3rem 2rem;">
+    <h3 style="font-size: 1.5rem; margin-bottom: 1.5rem; color: var(--text);">  📞 Bizning ijtimoiy tarmoqlarimmiz</h3>
+    <div class="social-links">
+      <a href="https://t.me/YOUR_BOT" target="_blank" class="social-btn telegram" title="Telegram"> 📱</a>
+      <a href="https://instagram.com/YOUR_PAGE" target="_blank" class="social-btn instagram" title="Instagram">📷</a>
+      <a href="https://wa.me/998901234567" target="_blank" class="social-btn whatsapp" title="WhatsApp">💬</a>
+    </div>
+  </section>
+
+  <!-- Chat Modal -->
+  <div id="chatModal" class="modal-overlay">
+    <div class="chat-modal">
+      <div class="chat-header">
+        <div style="display: flex; align-items: center; gap: 0.75rem;">
+          <span>⚕️</span>
+          <span style="font-weight: 600;">MedAI Chat</span>
+        </div>
+        <button class="close-btn" onclick="closeChat()">✕</button>
+      </div>
+
+      <div id="messages">
+        <div class="message bot">
+          Assalomu alaykum! Men MedAI. Tibbiy savollaringizni bering. 😊
+        </div>
+      </div>
+
+      <!-- TEZ SAVOLLAR - CHAT ICHIDA -->
+      <div class="quick-questions">
+        <div class="quick-questions-title">⚡ Tez savollar:</div>
+        <div class="quick-btns">
+          <button class="quick-btn" onclick="fillQuestion('Qorin og\'rig\'i uchun nima qilish kerak?')">🤕 Qorin og'rig'i</button>
+          <button class="quick-btn" onclick="fillQuestion('Bosh og\'rig\'i paytida nima yordam beradi?')">😣 Bosh og'rig'i</button>
+          <button class="quick-btn" onclick="fillQuestion('Isitma va shamollashda qanday davolanish kerak?')">🤒 Isitma</button>
+          <button class="quick-btn" onclick="fillQuestion('Qandli diabetda parhez qanday bo\'lishi kerak?')">🩺 Diabet</button>
+          <button class="quick-btn" onclick="fillQuestion('Yurak og\'rig\'ida birinchi yordam qanday?')">❤️ Yurak og'rig'i</button>
+        </div>
+      </div>
+
+      <div class="input-area">
+        <div class="input-row">
+          <input 
+            id="userInput" 
+            type="text" 
+            placeholder="Savolingizni yozing..." 
+            onkeypress="if(event.key==='Enter') sendChat()"
+          />
+          <button class="send-btn" onclick="sendChat()">Yuborish →</button>
+        </div>
+        <button class="btn-error" onclick="reportError()">⚠️ Xato haqida xabar berish</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quiz Modal -->
+  <div id="quizModal" class="modal-overlay">
+    <div class="chat-modal">
+      <div class="chat-header" style="background: linear-gradient(135deg, var(--accent), #7C3AED);">
+        <div style="display: flex; align-items: center; gap: 0.75rem;">
+          <span>🎓</span>
+          <span style="font-weight: 600;">Mini Viktorina</span>
+        </div>
+        <button class="close-btn" onclick="closeQuiz()">✕</button>
+      </div>
+      <div class="quiz-container" id="quizContainer"></div>
+    </div>
+  </div>
+
+  <!-- Confirmation Modal -->
+  <div id="confirmModal" class="modal-overlay">
+    <div class="confirm-modal">
+      <div style="font-size: 3.5rem; margin-bottom: 1rem;">🚑</div>
+      <h3>Tez yordam chaqirish</h3>
+      <p>103 raqamiga qo'ng'iroq qilishni xohlaysizmi?</p>
+      <div class="confirm-buttons">
+        <button class="btn-confirm btn-yes" onclick="makeEmergencyCall()">Ha</button>
+        <button class="btn-confirm btn-no" onclick="closeConfirm()">Yo'q</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Emergency Button - REALISTIK ANIMATSIYA -->
+  <div class="emergency-call">
+    <button class="emergency-btn" onclick="confirmEmergencyCall()" title="Tez yordam 103">
+      🚑
+      <span style="font-size: 0.875rem; margin-top: 0.25rem; font-weight: 700;">103</span>
+    </button>
+  </div>
+
+  <script>
+    // Particles animation
+    const particlesContainer = document.getElementById('particles');
+    for (let i = 0; i < 30; i++) {
+      const p = document.createElement('div');
+      p.className = 'particle';
+      p.style.width = p.style.height = Math.random() * 100 + 50 + 'px';
+      p.style.left = Math.random() * 100 + '%';
+      p.style.top = Math.random() * 100 + '%';
+      p.style.animationDelay = Math.random() * 20 + 's';
+      p.style.animationDuration = (Math.random() * 10 + 15) + 's';
+      particlesContainer.appendChild(p);
+    }
+
+    // Quiz Questions
+    const quizQuestions = [
+      {q: "Qon bosimi normal ko'rsatkichi qancha?", options: ["120/80", "140/90", "100/60", "160/100"], correct: 0},
+      {q: "Bir kunda necha litr suv ichish kerak?", options: ["1 litr", "2-2.5 litr", "5 litr", "500 ml"], correct: 1},
+      {q: "Isitma qachon xavfli hisoblanadi?", options: ["37°C", "38°C", "39°C va yuqori", "36°C"], correct: 2},
+      {q: "Yurak minutiga necha marta uradi (o'rtacha)?", options: ["40-50", "60-80", "100-120", "30-40"], correct: 1},
+      {q: "Vitamin D qayerdan olinadi?", options: ["Faqat tabletkalardan", "Quyosh nuri va ovqatlar", "Faqat suvdan", "Havoda bor"], correct: 1},
+      {q: "Gripp kasalligi necha kun davom etadi?", options: ["1-2 kun", "3-5 kun", "7-10 kun", "20 kun"], correct: 2},
+      {q: "Qandli diabetda qaysi mahsulot cheklangan?", options: ["Sabzavotlar", "Go'sht", "Shakar va shirinliklar", "Baliq"], correct: 2},
+      {q: "Bosh og'rig'ida eng ko'p uchraydigan sabab?", options: ["Uyqusizlik va stress", "Ko'p ovqatlanish", "Ko'p yurish", "Televizor ko'rish"], correct: 0},
+      {q: "Tish yuvish kuniga necha marta kerak?", options: ["1 marta", "2 marta", "3 marta", "Haftada 1 marta"], correct: 1},
+      {q: "Allergiya qaysi faslda ko'proq kuchayadi?", options: ["Qish", "Bahor", "Yoz", "Kuz"], correct: 1},
+      {q: "Qorin og'rig'ida qaysi mahsulotni iste'mol qilmaslik kerak?", options: ["Guruch", "Yog'li va achchiq ovqat", "Sho'rva", "Pishirilgan sabzavot"], correct: 1},
+      {q: "Insult belgilaridan biri?", options: ["Oyoq og'rig'i", "Nutqning buzilishi", "Ko'zning qichishi", "Bel og'rig'i"], correct: 1},
+      {q: "Yurak xurujida birinchi yordam?", options: ["Yugurish", "103 ga qo'ng'iroq qilish", "Uxlatish", "Ovqat berish"], correct: 1},
+      {q: "Shamollashda eng yaxshi davo?", options: ["Antibiotik", "Dam olish va ko'p suyuqlik ichish", "Sovuq suv ichish", "Sport"], correct: 1},
+      {q: "Sog'lom uxlash vaqti?", options: ["4-5 soat", "7-8 soat", "10-12 soat", "3 soat"], correct: 1},
+      {q: "Yuqumli kasalliklar qanday tarqaladi?", options: ["Havo orqali", "Teginish orqali", "Havo va teginish orqali", "Faqat ovqat orqali"], correct: 2},
+      {q: "Tanada eng katta organ?", options: ["Jigar", "Teri", "Miya", "Yurak"], correct: 1},
+      {q: "Ko'zni himoya qilish uchun nimani iste'mol qilish kerak?", options: ["Sabzi va A vitamini", "Shakar", "Tuz", "Yog'"], correct: 0},
+      {q: "Yurak-tomir kasalliklarining asosiy sababi?", options: ["Sog'lom ovqatlanish", "Harakatsizlik va yomon ovqatlanish", "Ko'p uxlash", "Vitaminlar"], correct: 1},
+      {q: "Vaktsinatsiya nima uchun kerak?", options: ["Kasalliklarning oldini olish", "Davolash", "Og'riqni kamaytirish", "Immobilizatsiya"], correct: 0}
+    ];
+
+    let currentQuestion = 0;
+    let score = 0;
+    let timeLeft = 60;
+    let timerInterval;
+    let quizAttempts = parseInt(localStorage.getItem('quizAttempts') || '0');
+    const API_URL = '/chat';
+
+    // Modal functions
+    function openChat() {
+      document.getElementById('chatModal').classList.add('active');
+      document.getElementById('userInput').focus();
+    }
+
+    function closeChat() {
+      document.getElementById('chatModal').classList.remove('active');
+    }
+
+    function openQuiz() {
+      quizAttempts = parseInt(localStorage.getItem('quizAttempts') || '0');
+      if (quizAttempts >= 3) {
+        showPaymentRequired();
+      } else {
+        document.getElementById('quizModal').classList.add('active');
+        startQuiz();
+      }
+    }
+
+    function closeQuiz() {
+      document.getElementById('quizModal').classList.remove('active');
+      clearInterval(timerInterval);
+    }
+
+    function confirmEmergencyCall() {
+      document.getElementById('confirmModal').classList.add('active');
+    }
+
+    function closeConfirm() {
+      document.getElementById('confirmModal').classList.remove('active');
+    }
+
+    function makeEmergencyCall() {
+      window.location.href = 'tel:103';
+      closeConfirm();
+    }
+
+    function reportError() {
+      window.open('https://t.me/YOUR_BOT', '_blank');
+    }
+
+    // TEZ SAVOLLAR FUNKSIYASI
+    function fillQuestion(text) {
+      const input = document.getElementById('userInput');
+      input.value = text;
+      input.focus();
+    }
+
+    // Quiz functions
+    function showPaymentRequired() {
+      const container = document.getElementById('quizContainer');
+      container.innerHTML = `
+        <div class="payment-info">
+          <h3>💰 To'lov Kerak</h3>
+          <p style="margin-bottom: 1rem;">Siz 3 ta bepul urinishni ishlatdingiz.</p>
+          <p style="font-size: 1.5rem; font-weight: 700; color: var(--warning); margin: 1rem 0;">999 so'm</p>
+          <p style="font-size: 0.875rem; color: var(--text-light); margin-bottom: 1.5rem;">Har bir qo'shimcha urinish uchun</p>
+          <button class="btn btn-quiz" style="width: 100%; justify-content: center; margin-bottom: 1rem;" onclick="processPayment()">💳 To'lov qilish</button>
+          <button class="btn" style="width: 100%; justify-content: center; background: var(--border); color: var(--text); padding: 1rem 2rem; border-radius: 14px; font-weight: 700; cursor: pointer;" onclick="closeQuiz()">Bekor qilish</button>
+        </div>
+      `;
+      document.getElementById('quizModal').classList.add('active');
+    }
+
+    function processPayment() {
+      alert('To`lov tizimi tez orada qo`shiladi!');
+      closeQuiz();
+    }
+
+    function startQuiz() {
+      currentQuestion = 0;
+      score = 0;
+      timeLeft = 60;
+      displayQuestion();
+      startTimer();
+    }
+
+    function displayQuestion() {
+      const container = document.getElementById('quizContainer');
+      if (currentQuestion >= quizQuestions.length) {
+        showResults();
+        return;
+      }
+      const q = quizQuestions[currentQuestion];
+      const progress = ((currentQuestion + 1) / quizQuestions.length * 100).toFixed(0);
+      container.innerHTML = `
+        <div class="quiz-progress">
+          <div class="quiz-progress-bar" style="width: ${progress}%"></div>
+        </div>
+        <div class="quiz-timer" id="timer">${timeLeft}</div>
+        <div class="quiz-question">
+          <h3>Savol ${currentQuestion + 1}/${quizQuestions.length}</h3>
+          <p style="font-size: 1.1rem; margin-bottom: 1.5rem; color: var(--text);">${q.q}</p>
+          <div class="quiz-options">
+            ${q.options.map((opt, i) => `<div class="quiz-option" onclick="selectOption(${i})">${opt}</div>`).join('')}
+          </div>
+        </div>
+      `;
+    }
+
+    function selectOption(index) {
+      const q = quizQuestions[currentQuestion];
+      if (index === q.correct) score++;
+      currentQuestion++;
+      timeLeft = 60;
+      displayQuestion();
+    }
+
+    function startTimer() {
+      clearInterval(timerInterval);
+      timerInterval = setInterval(() => {
+        timeLeft--;
+        const timerEl = document.getElementById('timer');
+        if (timerEl) timerEl.textContent = timeLeft;
+        if (timeLeft <= 0) {
+          clearInterval(timerInterval);
+          currentQuestion++;
+          timeLeft = 60;
+          displayQuestion();
+        }
+      }, 1000);
+    }
+
+    function showResults() {
+      clearInterval(timerInterval);
+      const container = document.getElementById('quizContainer');
+      const percentage = (score / quizQuestions.length * 100).toFixed(0);
+      const passed = score >= 18;
+      
+      if (passed) {
+        quizAttempts++;
+        localStorage.setItem('quizAttempts', quizAttempts);
+      }
+      
+      container.innerHTML = `
+        <div style="text-align: center; padding: 2rem;">
+          <div style="font-size: 5rem; margin-bottom: 1rem;">${passed ? '🏆' : '😔'}</div>
+          <h2 style="font-size: 2rem; margin-bottom: 1rem; color: var(--text);">${passed ? 'Tabriklaymiz!' : 'Afsuski...'}</h2>
+          <p style="font-size: 1.5rem; font-weight: 700; color: var(--primary); margin-bottom: 1rem;">${score}/${quizQuestions.length} to'g'ri</p>
+          <p style="font-size: 1.25rem; color: ${passed ? 'var(--secondary)' : 'var(--error)'}; margin-bottom: 2rem;">${percentage}%</p>
+          ${passed ? '<p style="color: var(--secondary); font-weight: 600; margin-bottom: 2rem;">✅ Siz sertifikatga sazovor bo\'ldingiz!</p>' : '<p style="color: var(--text-light); margin-bottom: 2rem;">Kamida 18 ta to\'g\'ri javob kerak edi.</p>'}
+          <button class="btn btn-primary" style="width: 100%; justify-content: center; margin-bottom: 1rem;" onclick="closeQuiz()">Yopish</button>
+          <button class="btn btn-quiz" style="width: 100%; justify-content: center;" onclick="startQuiz()">Qayta urinish</button>
+        </div>
+      `;
+    }
+
+    // Chat functions
+    function addMessage(text, type) {
+      const div = document.createElement('div');
+      div.className = `message ${type}`;
+      div.textContent = text;
+      document.getElementById('messages').appendChild(div);
+      document.getElementById('messages').scrollTop = document.getElementById('messages').scrollHeight;
+    }
+
+    async function sendChat() {
+      const input = document.getElementById('userInput');
+      const text = input.value.trim();
+      if (!text) return;
+      
+      addMessage(text, 'user');
+      input.value = '';
+      addMessage('Yuklanmoqda...', 'bot');
+      
+      try {
+        const res = await fetch(API_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ message: text })
+        });
+        
+        const data = await res.json();
+        const messages = document.getElementById('messages');
+        messages.removeChild(messages.lastChild);
+        addMessage(data.reply || 'Javob kelmadi', 'bot');
+      } catch (err) {
+        console.error(err);
+        const messages = document.getElementById('messages');
+        messages.removeChild(messages.lastChild);
+        addMessage('❌ Server bilan bog\'lanib bo\'lmadi', 'bot');
+      }
+    }
+
+    // Click outside to close modals
+    document.getElementById('chatModal').addEventListener('click', e => {
+      if (e.target.id === 'chatModal') closeChat();
+    });
+
+    document.getElementById('quizModal').addEventListener('click', e => {
+      if (e.target.id === 'quizModal') closeQuiz();
+    });
+
+    document.getElementById('confirmModal').addEventListener('click', e => {
+      if (e.target.id === 'confirmModal') closeConfirm();
+    });
+  </script>
+</body>
+</html>
